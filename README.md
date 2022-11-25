@@ -79,22 +79,6 @@ Example response :
 ]
 ```
 
-## Récupérer un produit
-
-```sh
-GET /api/products/6380a0c9abf2d58736f8876d
-```
-
-Exemple réponse : 
-```sh
-{
-    "_id": "6380a0c9abf2d58736f8876d",
-    "name": "kiwi",
-    "stock": 10,
-    "__v": 0
-}
-```
-
 ## Mettre à jour un produit
 
 ```sh
