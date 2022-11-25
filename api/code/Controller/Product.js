@@ -60,6 +60,7 @@ const removeStock = (req, res) => {
 				res.status(400).json({
 					message: "Le stock ne peut pas être inférieur à 0"
 				});
+				return;
 			}
 			result.stock -= stock;
 			result.save()
