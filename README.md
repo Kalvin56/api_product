@@ -36,7 +36,7 @@ Exemple réponse :
 ## Récupérer un produit
 
 ```sh
-GET /api/products/6380a0c9abf2d58736f8876d
+GET /api/products/:id
 ```
 
 Exemple réponse : 
@@ -107,5 +107,50 @@ Exemple réponse :
 ## Supprimer un produit
 
 ```sh
-DELETE /api/products/637fabce5e2c83d037a2f7cc
+DELETE /api/products/:id
 ```
+
+## Augmenter le stock d'un produit
+
+```sh
+PATCH /api/products/:id/stock/add
+```
+
+Exemple body : 
+```sh
+{
+    "stock": 10
+}
+```
+
+Exemple réponse : 
+```sh
+{
+    "_id": "637f8d8cfd7fc0136c98b8b8",
+    "name": "boisson",
+    "stock": 410,
+    "__v": 0
+}
+```
+
+## Diminuer le stock d'un produit
+
+```sh
+PATCH /api/products/:id/stock/remove
+```
+
+Exemple body : 
+```sh
+{
+    "stock": 10
+}
+```
+
+Exemple réponse : 
+```sh
+{
+    "_id": "637f8d8cfd7fc0136c98b8b8",
+    "name": "boisson",
+    "stock": 390,
+    "__v": 0
+}
