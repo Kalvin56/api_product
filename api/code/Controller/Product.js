@@ -53,8 +53,21 @@ const addStock = (req, res) => {
 
 const removeStock = (req, res) => {
 	let id = req.params.id;
-	Product.findOneAndUpdate({ _id: id }, {$inc: { stock: -req.body.stock }})
-		.then((result) => res.status(200).json(result))
+	let stock = req.body.stock;
+	Product.findOne({_id: id})
+		.then((result) => {
+			if(result.stock - stock < 0){
+				res.status(400).json({
+					message: "Le stock ne peut pas être inférieur à 0"
+				});
+			}
+			result.stock -= stock;
+				result.save()
+					.then((result) => res.status(200).json(result))
+					.catch((error) => res.status(400).json({
+						message: error?.message || "Une erreur est survenue"
+					}))
+		})
 		.catch((error) => res.status(400).json({
 			message: error?.message || "Une erreur est survenue"
 		}))
