@@ -49,25 +49,3 @@ module.exports = {
 	put,
 	deleteId,
 }
-
-// module.exports = (app) => {
-// 	app.route('/products')
-// 		.post((req, res) => {
-// 			createProduct(req.body)
-// 			    .then((result) => res.status(201).json(result))
-//         	    .catch((error) => res.status(400).json({messsage: "Une erreur est survenue", error: error}))
-// 		});
-// 	app.route('/products/:id')
-// 		.get((req, res) => {
-// 			let id = req.params.id;
-// 			getProduct(id)
-// 				.then((result) => { res.status(200).json(result) })
-//         	    .catch((error) => { res.status(404).json({messsage: "Aucun produit trouvé"}) })
-// 		});
-// 	app.route('/products')
-// 		.get((req, res) => {
-// 			getProducts()
-// 				.then((result) => { res.status(200).json(result) })
-//         	    .catch((error) => { res.status(400).json({messsage: "Une erreur est survenue", error: error}) })
-// 		});
-// }
