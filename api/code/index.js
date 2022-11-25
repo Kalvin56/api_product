@@ -5,6 +5,8 @@ var express = require('express');
 var cors = require('cors');
 const mongoose = require('mongoose');
 const routes = require('./routes');
+const { Role } = require('./Model/Role');
+const { initial } = require('./init');
 
 var app = express();
 port = process.env.PORT || 8088;
@@ -13,7 +15,10 @@ app.use(cors());
 app.use(express.json());
 
 mongoose.connect(`mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@mongodb-api-mds:27017/${process.env.MONGO_DB}`)
-	.then((result) => console.log("Mongodb connexion success !"))
+	.then((result) => {
+		console.log("Mongodb connexion success !")
+		initial()
+	})
 	.catch((err) => console.log(err))
 
 app.use('/api', routes)
