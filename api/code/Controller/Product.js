@@ -13,7 +13,7 @@ const getId = (req, res) => {
 	Product.findOne({ _id: id })
 		.then((result) => res.status(200).json(result))
 		.catch((error) => res.status(404).json({
-			messsage: `le produit ${id} n'a pas été trouvé`
+			message: `le produit ${id} n'a pas été trouvé`
 		}))
 }
 
@@ -38,7 +38,7 @@ const deleteId = (req, res) => {
 	Product.findOneAndDelete({ _id: id })
 		.then((result) => res.status(204).json({}))
 		.catch((error) => res.status(404).json({
-			messsage: `le produit ${id} n'a pas été trouvé`
+			message: `le produit ${id} n'a pas été trouvé`
 		}))
 }
 
