@@ -1,0 +1,15 @@
+print('Start #################################################################');
+
+db = db.getSiblingDB('${DB}'); // équivalent `use ${DB}`
+db.createUser(
+  {
+    user: '${USER}',
+    pwd: '${PASSWORD}',
+    roles: [{ role: 'readWrite', db: '${DB}' }],
+  },
+);
+db.createCollection('leagues');
+db.createCollection('teams');
+db.createCollection('fixtures');
+
+print('END #################################################################');
