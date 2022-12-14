@@ -13,6 +13,11 @@ Lien : http://localhost:8088/graphql
 
 ## Créer un produit
 
+Paramètres :
+  - name: obligatoire
+  - code: obligatoire
+  - stock: obligatoire
+
 ```sh
 mutation {
     createProduct (product: {name: "abricot", code: "8887-77", stock: 10}) {
@@ -37,6 +42,9 @@ Exemple réponse :
 ```
 
 ## Récupérer un produit (code, id ou name)
+
+Paramètres :
+  - name ou code ou id: obligatoire
 
 ### Code
 
@@ -107,7 +115,7 @@ query {
 
 ```sh
 {
-    product(product: {name: "abricot"}) {
+    product (product: {name: "abricot"}) {
         _id,
         name
         code
@@ -177,7 +185,8 @@ Exemple réponse :
 
 ## Supprimer un produit (code ou id)
 
-### Code
+Paramètres :
+  - code ou id: obligatoire
 
 ```sh
 mutation {
@@ -194,28 +203,16 @@ Exemple réponse :
 }
 ```
 
-### Id
+## Mettre à jour un produit (code ou id)
+
+Paramètres :
+  - code ou id: obligatoire
+  - name
+  - stock
 
 ```sh
 mutation {
-    deleteProduct(product: {id: "639992584572b77ed68b8bc5"})
-}
-```
-
-Exemple réponse :
-```sh
-{
-  "data": {
-    "deleteProduct": "639992584572b77ed68b8bc5"
-  }
-}
-```
-
-## Mettre à jour un produit
-
-```sh
-mutation {
-    updateProduct (product: {id: "6399acb0a7a603d49d051df0", name: "cerise du jardin", code: "66", stock: 10}) {
+    updateProduct (product: {id: "6399acb0a7a603d49d051df0", name: "cerise du jardin", stock: 10}) {
     		_id,
         name,
         code,
@@ -238,7 +235,11 @@ Exemple réponse :
 }
 ```
 
-## Augmenter le stock
+## Augmenter le stock (code ou id)
+
+Paramètres :
+  - code ou id: obligatoire
+  - stock : obligatoire
 
 ```sh
 mutation {
@@ -265,7 +266,11 @@ Exemple réponse :
 }
 ```
 
-## Diminuer le stock
+## Diminuer le stock (code ou id)
+
+Paramètres :
+  - code ou id: obligatoire
+  - stock : obligatoire
 
 ```sh
 mutation {
@@ -340,7 +345,7 @@ Exemple réponse :
 GET /api/products
 ```
 
-Example response : 
+Example réponse : 
 ```sh
 [
     {
