@@ -5,6 +5,9 @@ var express = require('express');
 var cors = require('cors');
 const mongoose = require('mongoose');
 const routes = require('./routes');
+const {graphqlHTTP} = require("express-graphql")
+const graphqlSchema = require("./graphql/schema")
+const graphqlResolvers = require("./graphql/resolvers")
 
 var app = express();
 port = process.env.PORT || 8088;
@@ -17,5 +20,14 @@ mongoose.connect(`mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@
 	.catch((err) => console.log(err))
 
 app.use('/api', routes)
+
+app.use(
+  "/graphql",
+  graphqlHTTP({
+    schema: graphqlSchema,
+    rootValue: graphqlResolvers,
+    graphiql: true,
+  })
+)
 
 app.listen(port);
