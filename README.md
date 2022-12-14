@@ -213,7 +213,7 @@ Paramètres :
 ```sh
 mutation {
     updateProduct (product: {id: "6399acb0a7a603d49d051df0", name: "cerise du jardin", stock: 10}) {
-    		_id,
+        _id,
         name,
         code,
         stock
@@ -244,7 +244,7 @@ Paramètres :
 ```sh
 mutation {
     addStock (product: {code: "66", stock: 15}) {
-    		_id,
+        _id,
         name,
         code,
         stock
@@ -275,7 +275,7 @@ Paramètres :
 ```sh
 mutation {
     removeStock (product: {code: "66", stock: 5}) {
-    		_id,
+        _id,
         name,
         code,
         stock
