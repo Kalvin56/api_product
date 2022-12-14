@@ -26,6 +26,19 @@ module.exports = buildSchema(`
     code: String
   }
 
+  input ProductUpdate {
+    id: String
+    name: String
+    code: String
+    stock: Int
+  }
+
+  input ProductStock {
+    id: String
+    code: String
+    stock: Int!
+  }
+
   type Query {
     products:[Product!],
     product(product:ProductGet):Product!
@@ -33,7 +46,10 @@ module.exports = buildSchema(`
 
   type Mutation {
     createProduct(product:ProductInput): Product,
-    deleteProduct(product:ProductDelete): ID
+    deleteProduct(product:ProductDelete): ID,
+    updateProduct(product:ProductUpdate): Product,
+    addStock(product:ProductStock): Product
+    removeStock(product:ProductStock): Product
   }
 
   schema {

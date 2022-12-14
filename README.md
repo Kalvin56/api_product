@@ -211,6 +211,87 @@ Exemple réponse :
 }
 ```
 
+## Mettre à jour un produit
+
+```sh
+mutation {
+    updateProduct (product: {id: "6399acb0a7a603d49d051df0", name: "cerise du jardin", code: "66", stock: 10}) {
+    		_id,
+        name,
+        code,
+        stock
+    }
+}
+```
+
+Exemple réponse :
+```sh
+{
+  "data": {
+    "updateProduct": {
+      "_id": "6399acb0a7a603d49d051df0",
+      "name": "cerise du jardin",
+      "code": "66",
+      "stock": 10
+    }
+  }
+}
+```
+
+## Augmenter le stock
+
+```sh
+mutation {
+    addStock (product: {code: "66", stock: 15}) {
+    		_id,
+        name,
+        code,
+        stock
+    }
+}
+```
+
+Exemple réponse :
+```sh
+{
+  "data": {
+    "addStock": {
+      "_id": "6399acb0a7a603d49d051df0",
+      "name": "cerise du jardin",
+      "code": "66",
+      "stock": 25
+    }
+  }
+}
+```
+
+## Diminuer le stock
+
+```sh
+mutation {
+    removeStock (product: {code: "66", stock: 5}) {
+    		_id,
+        name,
+        code,
+        stock
+    }
+}
+```
+
+Exemple réponse :
+```sh
+{
+  "data": {
+    "removeStock": {
+      "_id": "6399acb0a7a603d49d051df0",
+      "name": "cerise du jardin",
+      "code": "66",
+      "stock": 5
+    }
+  }
+}
+```
+
 # Documentation API PRODUCTS
 
 ## Créer un produit

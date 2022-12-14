@@ -73,6 +73,66 @@ module.exports = {
     }
   },
 
+  updateProduct: async args => {
+    try {
+      let settings = {}
+      const { id, code } = args.product
+
+      if(id){
+        settings = {_id : id}
+      }else if(code){
+        settings = {code : code}
+      }
+      
+      const updateProduct = await Product.findOneAndUpdate(settings, args.product, { new: true, runValidators: true })
+      return { ...updateProduct._doc}
+    } catch (error) {
+      throw error
+    }
+  },
+
+  addStock: async args => {
+    try {
+      let settings = {}
+      const { id, code, stock } = args.product
+
+      if(id){
+        settings = {_id : id}
+      }else if(code){
+        settings = {code : code}
+      }
+      
+      const updateProduct = await Product.findOneAndUpdate(settings, {$inc: { stock }})
+      return { ...updateProduct._doc}
+    } catch (error) {
+      throw error
+    }
+  },
+
+  removeStock: async args => {
+    try {
+      let settings = {}
+      const { id, code, stock } = args.product
+
+      if(id){
+        settings = {_id : id}
+      }else if(code){
+        settings = {code : code}
+      }
+
+      const actualProduct = await Product.findOne(settings)
+      if(actualProduct.stock - stock < 0){
+        actualProduct.stock = 0;
+      }else{
+        actualProduct.stock -= stock;
+      }
+      const updateProduct = await actualProduct.save()
+      return { ...updateProduct._doc}
+    } catch (error) {
+      throw error
+    }
+  },
+
   deleteProduct: async args => {
     try {
       let settings = {}
